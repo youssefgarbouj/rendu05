@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      @if (motos.length != 0) {
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Numéro</th>
+              <th>Id Moto</th>
+              <th>Marque</th>
+              <th>Modèle</th>
+              <th>Prix Moto</th>
+              <th>Date Fabrication</th>
+             
+              <th>Categorie</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (moto of motos; track moto.idMoto; let index = $index; let nbr = $count) {
+              <tr>
+                <td>{{ index + 1 }}</td>
+                <td>{{ moto.idMoto }}</td>
+                <td>{{ moto.marqueMoto }}</td>
+                <td>{{ moto.modeleMoto }}</td>
+                <td>{{ moto.prixMoto }}</td>
+                <td>{{ moto.dateFabrication | date:'yyyy-MM-dd' }}</td>
+                <td>{{ moto.categorie!.nomCat}}</td>
+                <td>
+                  <button class="btn btn-danger me-2" (click)="deleteMoto(moto)">Supprimer</button>
+                  <button class="btn btn-info" [routerLink]="['/update-moto', moto.idMoto]">Editer</button>
+                </td>
+              </tr>
+              @if ($last) {
+                <tr><td colspan="8"><h5>Nombre : {{ nbr }}</h5></td></tr>
+              }
+            }
+          </tbody>
+        </table>
+      } @else {
+        <h1>Aucune moto trouvée !</h1>
+      }
+    </div>
+  </div>
+</div>

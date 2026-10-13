@@ -1,0 +1,41 @@
+<div class="container">
+  <div>
+    <h2>Modifier une Moto :</h2>
+  </div>
+
+  <form>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>ID Moto</label>
+      <input type="number" readonly [(ngModel)]="currentMoto.idMoto" name="idMoto" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Marque Moto</label>
+      <input type="text" [(ngModel)]="currentMoto.marqueMoto" name="marqueMoto" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Modèle Moto</label>
+      <input type="text" [(ngModel)]="currentMoto.modeleMoto" name="modeleMoto" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+      <label>Prix Moto</label>
+      <input type="number" [(ngModel)]="currentMoto.prixMoto" name="prixMoto" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+      <label>Date Fabrication</label>
+      <input type="date" [ngModel]="currentMoto.dateFabrication | date: 'yyyy-MM-dd'"
+        (ngModelChange)="currentMoto.dateFabrication = $event" name="dateFabrication" class="form-control">
+    </div>
+
+    <select class="form-control form-control-lg" id="idCat" name="idCat" [(ngModel)]="updatedcatid">
+      @for(cat of categories; track cat.idCat)
+      {
+      <option [value]="cat.idCat"> {{cat.nomCat}} </option>
+      }
+    </select>
+
+    <div class="mt-2">
+      
+      <button type="submit" (click)="updateMoto()" class="btn btn-success">Modifier</button>
+    </div>
+  </form>
+</div>
