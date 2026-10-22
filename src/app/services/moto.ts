@@ -51,4 +51,8 @@ export class MotoService {
   consulterCategorie(id: number): Categorie {
     return this.categories.find(cat => cat.idCat == id)!;
   }
+
+  rechercherParCategorie(idCat: number): Moto[] {
+    return this.motos.filter(moto => moto.categorie?.idCat === idCat);
+  }
 }

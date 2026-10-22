@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+    <label for="idCat">Catégorie</label>
+    <select
+      #categorySelect
+      class="form-control form-control-lg"
+      id="idCat"
+      name="idCat"
+      [value]="idcat"
+      (change)="onChange(categorySelect.value)"
+    >
+      @for (cat of categories; track cat.idCat) {
+        <option [value]="cat.idCat">{{ cat.nomCat }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      @if (motos.length > 0) {
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Marque</th>
+              <th>Modèle</th>
+              <th>Prix</th>
+              <th>Date de fabrication</th>
+              <th>Catégorie</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (moto of motos; track moto.idMoto) {
+              <tr>
+                <td>{{ moto.idMoto }}</td>
+                <td>{{ moto.marqueMoto }}</td>
+                <td>{{ moto.modeleMoto }}</td>
+                <td>{{ moto.prixMoto }}</td>
+                <td>{{ moto.dateFabrication }}</td>
+                <td>{{ moto.categorie?.nomCat }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      } @else {
+        <p class="mb-0">Aucune moto trouvée dans cette catégorie.</p>
+      }
+    </div>
+  </div>
+</div>

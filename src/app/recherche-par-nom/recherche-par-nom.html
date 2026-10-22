@@ -1,0 +1,43 @@
+<div class="container">
+<form class="form-inline">
+<div class="form-group mx-sm-3 mb-2 mt-2 ">
+<label>Nom Produit</label>
+<input type="text" class="form-control" #nomInput
+(input)="$any(this).nomProduit = nomInput.value">
+<button type="submit" (click)="rechercherProds()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+</div>
+</form>
+<div class="card shadow mb-4">
+<div class="card-body"> 
+<table class="table table-striped">
+<tr>
+<th>Id</th>
+<th>Nom</th>
+<th>Prix</th>
+<th>Date Création</th>
+<th>Catégorie</th>
+</tr>
+@for (moto of produits; track moto.idMoto)
+{<tbody>
+<tr>
+<td>{{moto.idMoto}}</td>
+<td>{{moto.nomMoto}}</td>
+<td>{{moto.prixMoto}}</td>
+<td>{{moto.dateCreation | date:'dd/MM/yyyy'}}</td>
+@if(moto.categorie){
+<td>{{moto.categorie.nomCat}}</td> }
+@else {
+<td>PAS DE CATEGORIE</td>
+}
+<!--
+<td><a class="btn btn-danger"
+(click)="supprimerProduit(produit)">Supprimer</a></td>
+<td><a class="btn btn-success"
+[routerLink]="['/updateProduit',produit.idProduit]">Modifier</a></td> -->
+</tr>
+</tbody>
+}
+</table>
+</div>
+</div>
+</div>
